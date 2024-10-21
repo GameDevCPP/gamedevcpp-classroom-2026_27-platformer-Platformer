@@ -47,6 +47,9 @@ template <typename T, typename U> Vector2<T> Vcast(const Vector2<U>& v) {
   return Vector2<T>(static_cast<T>(v.x), static_cast<T>(v.y));
 };
 
+static double degrees(double degrees) {
+        return degrees * 4.0 * atan(1.0) / 180.0;
+}
 static double deg2rad(double degrees) {
   return degrees * 4.0 * atan(1.0) / 180.0;
 }
