@@ -61,7 +61,7 @@ target_link_libraries(lib_ecm PRIVATE lib_maths)
 
 
 
-add_executable(CMakeSFMLProject src/main.cpp  src/platformer.cpp)
+add_executable(CMakeSFMLProject src/platformer.cpp)
 target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics lib_engine  )
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)
 if (WIN32 AND BUILD_SHARED_LIBS)
