@@ -1,5 +1,10 @@
 cmake_minimum_required(VERSION 3.21)
 project(CMakeSFMLProject LANGUAGES CXX)
+# Enforce C++17 standard for the entire project
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED YES)
+set(CMAKE_CXX_EXTENSIONS NO)
+
 
 include(FetchContent)
 FetchContent_Declare(SFML
@@ -14,7 +19,9 @@ add_subdirectory("lib/b2d/Box2D")
 set(B2D_INCS "lib/b2d/Box2D/")
 link_directories("${CMAKE_BINARY_DIR}/lib/sfml/lib")
 
-
+message("sfml lib: ${CMAKE_BINARY_DIR}/lib/sfml/lib")
+set(SFML_INCS "${CMAKE_BINARY_DIR}/lib/sfml/include")
+set(SFML_LIBS "${CMAKE_BINARY_DIR}/lib/sfml/lib")
 
 #### Add Engine and our own library projects####
 
@@ -31,10 +38,20 @@ add_library(lib_tile_level_loader STATIC ${SOURCE_FILES})
 target_include_directories(lib_tile_level_loader INTERFACE "${CMAKE_SOURCE_DIR}/lib_tile_level_loader/" )
 target_link_libraries(lib_tile_level_loader lib_maths sfml-graphics)
 
+#The following is replaced because FetchContent_MakeAvailable(SFML) already includes the SFML headers
 # Maths lib
+#add_library(lib_maths INTERFACE)
+#target_sources(lib_maths INTERFACE "${CMAKE_SOURCE_DIR}/lib_maths/maths.h")
+#target_include_directories(lib_maths INTERFACE "${CMAKE_SOURCE_DIR}/lib_maths" SYSTEM INTERFACE ${SFML_INCS})
+
+## Better version...
+# Maths library
 add_library(lib_maths INTERFACE)
 target_sources(lib_maths INTERFACE "${CMAKE_SOURCE_DIR}/lib_maths/maths.h")
-target_include_directories(lib_maths INTERFACE "${CMAKE_SOURCE_DIR}/lib_maths" SYSTEM INTERFACE ${SFML_INCS})
+target_include_directories(lib_maths INTERFACE "${CMAKE_SOURCE_DIR}/lib_maths")
+# Link SFML with the maths library since maths.h includes SFML headers
+target_link_libraries(lib_maths INTERFACE sfml-system)
+
 
 ## ECM lib
 file(GLOB_RECURSE SOURCE_FILES lib_ecm/*.cpp lib_ecm/*.h)
@@ -45,7 +62,7 @@ target_link_libraries(lib_ecm PRIVATE lib_maths)
 
 
 add_executable(CMakeSFMLProject src/main.cpp  src/platformer.cpp)
-target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics)
+target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics lib_engine  )
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)
 if (WIN32 AND BUILD_SHARED_LIBS)
     add_custom_command(TARGET CMakeSFMLProject POST_BUILD
