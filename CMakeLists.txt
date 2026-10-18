@@ -61,12 +61,20 @@ target_link_libraries(lib_ecm PRIVATE lib_maths)
 
 
 
-add_executable(CMakeSFMLProject src/platformer.cpp)
+file(GLOB_RECURSE GAME_SOURCES src/scenes/*.cpp src/scenes/*.h src/components/*.cpp src/components/*.h)
+add_executable(CMakeSFMLProject src/platformer.cpp ${GAME_SOURCES})
 target_link_libraries(CMakeSFMLProject PRIVATE sfml-graphics lib_engine  )
 target_compile_features(CMakeSFMLProject PRIVATE cxx_std_17)
 if (WIN32 AND BUILD_SHARED_LIBS)
     add_custom_command(TARGET CMakeSFMLProject POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:CMakeSFMLProject> $<TARGET_FILE_DIR:CMakeSFMLProject> COMMAND_EXPAND_LISTS)
 endif()
+
+add_custom_target(copy_resources ALL COMMAND ${CMAKE_COMMAND}
+        -E copy_directory
+        "${PROJECT_SOURCE_DIR}/res"
+        "${CMAKE_BINARY_DIR}/res"
+)
+add_dependencies(CMakeSFMLProject copy_resources)
 
 install(TARGETS CMakeSFMLProject)

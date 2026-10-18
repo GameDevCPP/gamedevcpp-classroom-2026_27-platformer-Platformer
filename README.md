@@ -1,6 +1,6 @@
 # Platformer
 
-*These notes are an edited version of the notes available at [Games Engineering](https://dooglz.github.io/set09121/platfomer.html).*
+*These notes are an edited version of the notes available at [Games Engineering](https://gamedevcpp.github.io/set09121/platformer.html).*
 
 ## Get the Code
 
@@ -8,13 +8,24 @@ There is a lot of code behind this practical. You are provided with most of the 
 
 
 
-**You don't need to fork the repo or anything special, just download it in some way and then copy the code over to your usual lab repo.**
+This practical's code is provided in your Classroom50-generated repo -- no need to copy anything over, it's already here.
 
 The code you have been given contains:
 -   The skeleton code for lab6
 -   The three libraries we have already written. Ecm, LevelLoader, Maths.
 -   A new Library, the "Engine\". (Fully complete, no code to edit)
 -   My completed CMakeLists.txt - for you to check against (**Note, this will have lots of extra stuff you don't need! Just check and grab extra bits as you need them!**)
+
+### Submodules
+
+This template already has the Box2D and SFML submodules registered (you did
+the Box2D one yourself back in the Physics practical) -- but a fresh clone
+doesn't pull their actual contents by default. Open a terminal in the root
+of your repo and run:
+
+```bash
+git submodule update --init
+```
 
 ## The Engine
 
@@ -185,7 +196,7 @@ void Level1Scene::Load() {
 ```
 
 
-All the work is in the Load(). The Update() does very little -- only checking to see if the player has reached the end. This is the beautify of the Entity Component Model. Just build our level from your box of parts(components) and the game logic makes itself (almost Emergent behaviour).
+All the work is in the Load(). The Update() does very little -- only checking to see if the player has reached the end. This is the beauty of the Entity Component Model. Just build our level from your box of parts(components) and the game logic makes itself (almost Emergent behaviour).
 
 
 ## Components
@@ -227,7 +238,7 @@ void PhysicsComponent::update(double dt) {
 
 This is how the physics world is linked to the SFML/Entity world. This happens every frame. There is one huge problem with this:
 -   The PhysicsComponent is now in charge of the Entities position.
--   If anything modifies the Entities position (i.e another component), the physics component will overwrite this change with it's own value copied form the physics world.
+-   If anything modifies the Entities position (i.e another component), the physics component will overwrite this change with it's own value copied from the physics world.
 
 We *can* still move Entities manually, by calling PhysicsComponent.teleport(), but we have to *know* that an Entity has a physics object beforehand.
 
@@ -269,7 +280,7 @@ You shouldn't need to edit anything to get the Menu and first level running. Giv
 
 ## Scene 2
 
-There is some code missing form the scene\_level2.cpp file for you to complete.
+There is some code missing from the scene\_level2.cpp file for you to complete.
 This scene incorporates a non-physics moving object (using EnemyAIComponent), and a cool new Turret (EnemyTurretComponent) that fires physical bullets. There are two more new components in use here:
 -   The BulletComponent is just a countdown timer that deletes \_parent when it reaches 0;
 -   The HurtComponent, check for (fake) collision with the player and kills the player.
