@@ -292,7 +292,3 @@ The same goes for Scene 3. This scene is easier than Scene 2, just the player an
 Look at that, you've now going a working game, with multiple levels. Cool, huh? Remember: all of what is here is designed to be modified, broken, fixed, used, altered, changed, tweaked, and generally messed around with. Want a different type of movement for your game? Go add it then! Want new physics objects? Well, you can use Box2D can't ya?
 
 The ball really is in your court from now on: go make something awesome!
-
-Previous step: [Physics](physics)
-
-Next step: [Steering](lab8_1)
