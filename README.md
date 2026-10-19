@@ -1,5 +1,7 @@
 # Platformer
 
+![Platformer demo](assets/platformer_demo.gif)
+
 *These notes are an edited version of the notes available at [Games Engineering](https://gamedevcpp.github.io/set09121/platformer.html).*
 
 ## Get the Code
