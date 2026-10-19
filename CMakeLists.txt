@@ -17,11 +17,6 @@ FetchContent_MakeAvailable(SFML)
 add_subdirectory("lib/b2d/Box2D")
 #include_directories("lib/b2d/Box2D/")
 set(B2D_INCS "lib/b2d/Box2D/")
-link_directories("${CMAKE_BINARY_DIR}/lib/sfml/lib")
-
-message("sfml lib: ${CMAKE_BINARY_DIR}/lib/sfml/lib")
-set(SFML_INCS "${CMAKE_BINARY_DIR}/lib/sfml/include")
-set(SFML_LIBS "${CMAKE_BINARY_DIR}/lib/sfml/lib")
 
 #### Add Engine and our own library projects####
 

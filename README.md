@@ -16,10 +16,10 @@ The code you have been given contains:
 
 ### Submodules
 
-This template already has the Box2D and SFML submodules registered (you did
-the Box2D one yourself back in the Physics practical) -- but a fresh clone
-doesn't pull their actual contents by default. Open a terminal in the root
-of your repo and run:
+This template already has the Box2D submodule registered (you did this
+yourself back in the Physics practical) -- but a fresh clone doesn't pull
+its actual contents by default. Open a terminal in the root of your repo
+and run:
 
 ```bash
 git submodule update --init
