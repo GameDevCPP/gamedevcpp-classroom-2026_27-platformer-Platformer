@@ -133,10 +133,7 @@ What we have here is a system to switch scenes, first it un-loads the current sc
 
 ### Games and Concurrency
 
-This is a big and complicated topic, and we have a separate module just for this
-[Concurrent and Parallel Systems](https://github.com/edinburgh-napier/set10108)
-
-This is just a small toe-dip into the topic, and the code is already all written for you. What we are dealing with here is Multithreading. Using more than just one of those CPU cores that we have to gain us some more performance.
+This is a big and complicated topic, this is just a small toe-dip into the topic, and the code is already all written for you. What we are dealing with here is Multithreading. Using more than just one of those CPU cores that we have to gain us some more performance.
 
 Multi-threading for games is a bit tricky, some things can be parallelised easy(background asset loading), some things are almost impossible(Updating a complex set of interconnected Entities). It's not a silver bullet to give us more FPS. But for developers on current-gen consoles, it's a must-have to squeeze out every last drop of performance out of the hardware.
 
