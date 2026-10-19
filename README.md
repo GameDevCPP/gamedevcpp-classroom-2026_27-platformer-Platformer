@@ -4,11 +4,7 @@
 
 ## Get the Code
 
-There is a lot of code behind this practical. You are provided with most of the it, though with some sections left for you to complete.
-
-
-
-This practical's code is provided in your Classroom50-generated repo -- no need to copy anything over, it's already here.
+There is a lot of code behind this practical. For this reason, you are provided with starter code (in the files) with sections left for you to complete.
 
 The code you have been given contains:
 -   The skeleton code for lab6
